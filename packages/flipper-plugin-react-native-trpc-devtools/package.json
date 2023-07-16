@@ -22,8 +22,8 @@
   "peerDependencies": {
     "@emotion/styled": "latest",
     "antd": "latest",
-    "flipper-plugin": "^0.206.0",
-    "react": "^18.2.0",
+    "flipper-plugin": "latest",
+    "react": "latest",
     "react-dom": "latest"
   },
   "devDependencies": {
@@ -42,6 +42,10 @@
     "react": "latest",
     "react-dom": "latest",
     "typescript": "latest"
+  },
+  "resolutions": {
+    "@types/react": "17.0.2",
+    "@types/react-dom": "17.0.2"
   },
   "jest": {
     "testEnvironment": "jsdom",

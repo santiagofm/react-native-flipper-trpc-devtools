@@ -2,7 +2,7 @@
   "name": "react-native-trpc-flipper-devtools",
   "version": "1.0.0",
   "description": "A react-native tRPC devtools client",
-  "main": "index.ts",
+  "main": "./src/index.ts",
   "license": "MIT",
   "private": true,
   "peerDependencies": {
@@ -10,7 +10,10 @@
     "@trpc/client": "^10.34.0",
     "@trpc/react-query": "^10.34.0",
     "@trpc/server": "^10.34.0",
-    "react-native-devtools": "^0.0.1",
+    "flipper-plugin": "^0.206.0",
+    "react-native-flipper": "^0.206.0"
+  },
+  "devDependencies": {
     "react-native-flipper": "^0.206.0"
   }
 }
