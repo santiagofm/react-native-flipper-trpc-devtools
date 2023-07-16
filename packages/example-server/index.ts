@@ -3,6 +3,8 @@ import { createHTTPServer } from "@trpc/server/adapters/standalone";
 import cors from "cors";
 import { z } from "zod";
 
+const PORT = 9999;
+
 const t = initTRPC.create();
 
 const publicProcedure = t.procedure;
@@ -32,4 +34,4 @@ createHTTPServer({
   createContext() {
     return {};
   },
-}).listen(3000);
+}).listen(PORT);
