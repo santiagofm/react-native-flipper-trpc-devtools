@@ -1,6 +1,6 @@
 import React from "react";
 import { Layout, Spinner, theme } from "flipper-plugin";
-import { Card, Typography } from "antd";
+import { Typography } from "antd";
 
 export const WaitingDevice: React.FC = () => {
   return (
