@@ -27,6 +27,7 @@
     "react-dom": "latest"
   },
   "devDependencies": {
+    "@ant-design/icons": "^4.2.2",
     "@babel/preset-react": "latest",
     "@babel/preset-typescript": "latest",
     "@emotion/styled": "latest",
@@ -37,10 +38,12 @@
     "antd": "latest",
     "flipper-pkg": "latest",
     "flipper-plugin": "latest",
+    "hotkeys-js": "^3.11.2",
     "jest": "latest",
     "jest-mock-console": "latest",
     "react": "latest",
     "react-dom": "latest",
+    "react-native-trpc-flipper-devtools": "*",
     "typescript": "latest"
   },
   "resolutions": {
