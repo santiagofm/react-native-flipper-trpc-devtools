@@ -11,14 +11,18 @@ const FLIPPER_PLUGIN_NAME = "react-native-trpc-devtools";
 
 let _connection: Flipper.FlipperConnection | undefined = undefined;
 
-type MiddlewareLinkOptions = {
+type RequestResult<TRouter extends AnyRouter> =
+  | OperationResultEnvelope<unknown>
+  | TRPCClientError<TRouter>;
+
+type DevToolsLinkOptions = {
   enabled?: boolean;
   onConnect?: () => void;
   onDisconnect?: () => void;
 };
 
 export const flipperDevToolsLink = <TRouter extends AnyRouter = AnyRouter>(
-  opts: MiddlewareLinkOptions = {}
+  opts: DevToolsLinkOptions = {}
 ): TRPCLink<TRouter> => {
   const { enabled = true } = opts;
 
@@ -41,31 +45,35 @@ export const flipperDevToolsLink = <TRouter extends AnyRouter = AnyRouter>(
     return ({ op, next }) => {
       return observable((observer) => {
         const requestStartTime = Date.now();
-        function logResult(
-          result: OperationResultEnvelope<unknown> | TRPCClientError<TRouter>
-        ) {
-          const elapsedMs = Date.now() - requestStartTime;
+        const sendDataToPlugin = (result: RequestResult<TRouter>) => {
+          const time = Date.now() - requestStartTime;
+
           if (enabled) {
-            _connection?.send("newData", {
+            // TODO: Determine status
+            _connection?.send("TRPC_DATA", {
               ...op,
-              elapsedMs,
+              time,
               result,
             });
             console.log({
               ...op,
-              elapsedMs,
+              time,
               result,
             });
           }
-        }
+        };
+
+        // TODO: Can maybe send two events per request? One for the request and one for the response?
+        // https://github.com/rhenriquez28/trpc-client-devtools/blob/95bf29b4c383b92a2b9f2c96562a52e2135fa4ee/packages/devtools-link/src/index.ts#L41-L46
+
         return next(op)
           .pipe(
             tap({
               next(result) {
-                logResult(result);
+                sendDataToPlugin(result);
               },
               error(result) {
-                logResult(result);
+                sendDataToPlugin(result);
               },
             })
           )

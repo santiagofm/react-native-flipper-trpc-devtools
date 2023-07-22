@@ -20,7 +20,7 @@ export const Example: React.FC = () => {
   });
 
   const [serverTime, setServerTime] = React.useState<string>();
-  const [subscriptionEnabled, setSubscriptionEnabled] = React.useState(true);
+  const [subscriptionEnabled, setSubscriptionEnabled] = React.useState(false);
   trpc.time.useSubscription(undefined, {
     enabled: subscriptionEnabled,
     onData: data => setServerTime(data),
