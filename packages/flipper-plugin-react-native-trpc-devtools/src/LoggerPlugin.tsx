@@ -8,25 +8,49 @@ import {
   HighlightManager,
   DataTableManager,
 } from "flipper-plugin";
-import { Events, PluginEvents, RequestData } from "./types";
+import {
+  Events,
+  Operation,
+  OperationConfig,
+  PluginEvents,
+  RequestData,
+} from "./types";
 import { OperationView } from "./OperationView";
 
-const DurationFormatter = (value: any, highlighter?: HighlightManager) => {
+const TimestampFormatter = (value: number, highlighter?: HighlightManager) => {
+  const formattedValue = new Date(value).toLocaleTimeString(undefined, {
+    hour12: false,
+  });
+  return highlighter?.render(formattedValue) ?? value;
+};
+
+const DurationFormatter = (value: number, highlighter?: HighlightManager) => {
   const formattedValue = `${value}ms`;
   return highlighter?.render(formattedValue) ?? value;
 };
 
 const columns: DataTableColumn<RequestData>[] = [
   {
+    key: "timestamp",
+    title: "Time",
+    width: 70,
+    formatters: TimestampFormatter,
+  },
+  {
     key: "type",
     title: "Query/Mutation/Subscription",
-    width: 250,
+    width: 220,
+    filters: Object.entries(OperationConfig).map(([value, config]) => ({
+      label: config.label,
+      value,
+      enabled: false,
+    })),
     onRender: (row) => <OperationView data={row} />,
   },
   {
-    key: "time",
-    title: "Time",
-    width: 60,
+    key: "duration",
+    title: "Duration",
+    width: 80,
     align: "center",
     formatters: DurationFormatter,
   },
