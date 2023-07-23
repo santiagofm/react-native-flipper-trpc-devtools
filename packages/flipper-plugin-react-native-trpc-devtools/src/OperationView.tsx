@@ -7,7 +7,7 @@ const TypeViewContainer = styled.div({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  borderRadius: 4,
+  borderRadius: theme.inlinePaddingV,
   textAlign: "center",
   backgroundColor: theme.dividerColor,
   width: 20,
@@ -30,15 +30,13 @@ type OperationViewProps = {
   data: Data;
 };
 
-export const OperationView: React.FC<OperationViewProps> = ({ data }) => {
-  return (
-    <Row gutter={6}>
-      <Col>
-        <OperationTypeView type={data.type} />
-      </Col>
-      <Col>
-        <Typography.Text strong>{data.path}</Typography.Text>
-      </Col>
-    </Row>
-  );
-};
+export const OperationView: React.FC<OperationViewProps> = ({ data }) => (
+  <Row gutter={theme.inlinePaddingV}>
+    <Col>
+      <OperationTypeView type={data.type} />
+    </Col>
+    <Col>
+      <Typography.Text strong>{data.path}</Typography.Text>
+    </Col>
+  </Row>
+);

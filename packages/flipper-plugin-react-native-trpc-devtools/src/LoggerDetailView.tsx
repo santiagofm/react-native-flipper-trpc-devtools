@@ -19,7 +19,7 @@ export const LoggerDetailView: React.FC<Props> = ({ close, data }) => (
     >
       <Layout.Horizontal gap center>
         <CloseCircleOutlined onClick={close} />
-        <Typography.Title level={4}>Extras</Typography.Title>
+        <Typography.Title level={theme.space.tiny}>Extras</Typography.Title>
       </Layout.Horizontal>
       <DataInspector data={data} expandRoot={true} />
     </Layout.Container>

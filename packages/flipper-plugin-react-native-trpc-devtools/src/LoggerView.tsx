@@ -7,6 +7,7 @@ import hotkeys from "hotkeys-js";
 import { Data } from "./types";
 import { LoggerPlugin } from "./LoggerPlugin";
 import { LoggerDetailView } from "./LoggerDetailView";
+import { ColorReference } from "./ColorReference";
 
 const getRowStyle = () => theme.monospace;
 
@@ -28,26 +29,29 @@ export const LoggerView: React.FC = () => {
 
   return (
     <Layout.Container grow>
-      <Layout.ScrollContainer
-        vertical
-        style={{ backgroundColor: theme.backgroundWash }}
-      >
-        <DataTable<Data>
-          tableManagerRef={instance.tableManagerRef}
-          dataSource={instance.data}
-          columns={instance.columns}
-          enableAutoScroll={true}
-          enableMultiPanels={true}
-          enableHorizontalScroll={false}
-          onSelect={instance.setSelection}
-          onRowStyle={getRowStyle}
-          extraActions={
-            <Button title="Clear log" onClick={instance.clearData}>
-              <DeleteOutlined />
-            </Button>
-          }
-        />
-      </Layout.ScrollContainer>
+      <Layout.Bottom>
+        <Layout.ScrollContainer
+          vertical
+          style={{ backgroundColor: theme.backgroundWash }}
+        >
+          <DataTable<Data>
+            tableManagerRef={instance.tableManagerRef}
+            dataSource={instance.data}
+            columns={instance.columns}
+            enableAutoScroll={true}
+            enableMultiPanels={true}
+            enableHorizontalScroll={false}
+            onSelect={instance.setSelection}
+            onRowStyle={getRowStyle}
+            extraActions={
+              <Button title="Clear log" onClick={instance.clearData}>
+                <DeleteOutlined />
+              </Button>
+            }
+          />
+        </Layout.ScrollContainer>
+        <ColorReference />
+      </Layout.Bottom>
       {selectedId && (
         <LoggerDetailView
           close={instance.clearSelection}
