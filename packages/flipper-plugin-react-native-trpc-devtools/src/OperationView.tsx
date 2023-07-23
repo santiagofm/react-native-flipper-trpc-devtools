@@ -1,7 +1,7 @@
 import React from "react";
 import { theme, styled } from "flipper-plugin";
 import { Col, Row, Typography } from "antd";
-import { RequestData, OperationType, Operation } from "./types";
+import { Data, OperationType, OperationConfig } from "./types";
 
 const TypeViewContainer = styled.div({
   display: "flex",
@@ -13,15 +13,9 @@ const TypeViewContainer = styled.div({
   width: 20,
 });
 
-const TypeColorMap = {
-  [Operation.QUERY]: theme.primaryColor,
-  [Operation.MUTATION]: theme.successColor,
-  [Operation.SUBSCRIPTION]: theme.warningColor,
-};
-
 const OperationTypeView: React.FC<{ type?: OperationType }> = ({ type }) => {
   const typeString = type?.at(0)?.toUpperCase();
-  const color = type ? TypeColorMap[type] : theme.dividerColor;
+  const color = type ? OperationConfig[type].color : theme.dividerColor;
 
   return (
     <TypeViewContainer>
@@ -33,7 +27,7 @@ const OperationTypeView: React.FC<{ type?: OperationType }> = ({ type }) => {
 };
 
 type OperationViewProps = {
-  data: RequestData;
+  data: Data;
 };
 
 export const OperationView: React.FC<OperationViewProps> = ({ data }) => {

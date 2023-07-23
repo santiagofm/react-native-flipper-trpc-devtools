@@ -45,19 +45,44 @@ export const flipperDevToolsLink = <TRouter extends AnyRouter = AnyRouter>(
     return ({ op, next }) => {
       return observable((observer) => {
         const requestStartTime = Date.now();
+
+        if (enabled) {
+          _connection?.send("TRPC_REQUEST", {
+            id: op.id,
+            timestamp: requestStartTime,
+            type: op.type,
+            input: op.input,
+            path: op.path,
+            context: op.context,
+          });
+          console.log("TRPC Request:", {
+            id: op.id,
+            timestamp: requestStartTime,
+            type: op.type,
+            input: op.input,
+            path: op.path,
+            context: op.context,
+          });
+        }
+
         const sendDataToPlugin = (result: RequestResult<TRouter>) => {
-          const time = Date.now() - requestStartTime;
+          const duration = Date.now() - requestStartTime;
 
           if (enabled) {
+            const isError = result instanceof Error || "error" in result.result;
+            const status = isError ? "error" : "success";
+
             // TODO: Determine status
-            _connection?.send("TRPC_DATA", {
-              ...op,
-              time,
+            _connection?.send("TRPC_RESPONSE", {
+              id: op.id,
+              duration,
+              status,
               result,
             });
-            console.log({
-              ...op,
-              time,
+            console.log("TRPC Response:", {
+              id: op.id,
+              duration,
+              status,
               result,
             });
           }

@@ -4,7 +4,7 @@ import { DeleteOutlined } from "@ant-design/icons";
 import { Button } from "antd";
 import { WaitingDevice } from "./WaitingDevice";
 import hotkeys from "hotkeys-js";
-import { RequestData } from "./types";
+import { Data } from "./types";
 import { LoggerPlugin } from "./LoggerPlugin";
 import { LoggerDetailView } from "./LoggerDetailView";
 
@@ -32,7 +32,7 @@ export const LoggerView: React.FC = () => {
         vertical
         style={{ backgroundColor: theme.backgroundWash }}
       >
-        <DataTable<RequestData>
+        <DataTable<Data>
           tableManagerRef={instance.tableManagerRef}
           dataSource={instance.data}
           columns={instance.columns}

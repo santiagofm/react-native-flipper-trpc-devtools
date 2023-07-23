@@ -7,26 +7,72 @@ import {
   DataTableColumn,
   HighlightManager,
   DataTableManager,
+  theme,
 } from "flipper-plugin";
-import { Events, PluginEvents, RequestData } from "./types";
+import {
+  Events,
+  OperationConfig,
+  PluginEvents,
+  Data,
+  StatusConfig,
+} from "./types";
 import { OperationView } from "./OperationView";
+import { Typography } from "antd";
 
-const DurationFormatter = (value: any, highlighter?: HighlightManager) => {
+const TimestampFormatter = (value?: number, highlighter?: HighlightManager) => {
+  if (!value) return "-";
+
+  const formattedValue = new Date(value).toLocaleTimeString(undefined, {
+    hour12: false,
+  });
+  return highlighter?.render(formattedValue) ?? value;
+};
+
+const DurationFormatter = (value?: number, highlighter?: HighlightManager) => {
+  if (!value) return "";
+
   const formattedValue = `${value}ms`;
   return highlighter?.render(formattedValue) ?? value;
 };
 
-const columns: DataTableColumn<RequestData>[] = [
+const columns: DataTableColumn<Data>[] = [
+  {
+    key: "timestamp",
+    title: "Time",
+    width: 70,
+    formatters: TimestampFormatter,
+  },
   {
     key: "type",
-    title: "Query/Mutation/Subscription",
-    width: 250,
+    title: "Procedure",
+    width: 200,
+    filters: Object.entries(OperationConfig).map(([value, config]) => ({
+      label: config.label,
+      value,
+      enabled: false,
+    })),
     onRender: (row) => <OperationView data={row} />,
   },
   {
-    key: "time",
-    title: "Time",
-    width: 60,
+    key: "status",
+    title: "Status",
+    width: 80,
+    align: "center",
+    onRender: (row) => {
+      const config =
+        row.status != null
+          ? StatusConfig[row.status]
+          : { label: "PENDING", color: theme.warningColor };
+
+      return (
+        <Typography style={{ color: config.color }}>{config.label}</Typography>
+      );
+    },
+  },
+  {
+    key: "duration",
+    title: "Duration",
+    width: 80,
     align: "center",
     formatters: DurationFormatter,
   },
@@ -39,21 +85,32 @@ const columns: DataTableColumn<RequestData>[] = [
 ];
 
 export const LoggerPlugin = (client: PluginClient<Events, {}>) => {
-  const data = createDataSource<RequestData, "id">([], {
+  const data = createDataSource<Data, "id">([], {
     limit: 200000,
     persist: "logs",
     key: "id",
   });
-  const tableManagerRef = createRef<
-    DataTableManager<RequestData> | undefined
-  >();
+  const tableManagerRef = createRef<DataTableManager<Data> | undefined>();
 
   const isConnected = createState<boolean>(client.isConnected);
   const selectedID = createState<string | null>(null);
 
-  client.onMessage(PluginEvents.TRPC_DATA, (newData) => {
+  client.onMessage(PluginEvents.TRPC_REQUEST, (item) => {
     // TODO: Should check if existing value already and update it instead
-    data.append(newData);
+    data.append(item);
+  });
+
+  client.onMessage(PluginEvents.TRPC_RESPONSE, (item) => {
+    const existingDataItem = data.getById(item.id);
+    if (!existingDataItem) {
+      console.error("Could not find existing data item for id", item.id);
+      return;
+    }
+
+    data.upsert({
+      ...existingDataItem,
+      ...item,
+    });
   });
 
   client.onConnect(() => {
@@ -75,7 +132,7 @@ export const LoggerPlugin = (client: PluginClient<Events, {}>) => {
     data.clear();
   };
 
-  const setSelection = (item?: RequestData) => {
+  const setSelection = (item?: Data) => {
     if (!item) return;
 
     selectedID.set(item.id);
