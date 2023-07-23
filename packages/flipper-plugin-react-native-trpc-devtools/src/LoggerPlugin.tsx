@@ -58,6 +58,11 @@ const columns: DataTableColumn<Data>[] = [
     title: "Status",
     width: 80,
     align: "center",
+    filters: Object.entries(StatusConfig).map(([value, config]) => ({
+      label: config.label,
+      value,
+      enabled: false,
+    })),
     onRender: (row) => {
       const config =
         row.status != null
