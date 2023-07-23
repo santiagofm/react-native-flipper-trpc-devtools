@@ -1,7 +1,7 @@
 import React from "react";
 import { theme, styled } from "flipper-plugin";
 import { Col, Row, Typography } from "antd";
-import { RequestData, OperationType, OperationConfig } from "./types";
+import { Data, OperationType, OperationConfig } from "./types";
 
 const TypeViewContainer = styled.div({
   display: "flex",
@@ -27,7 +27,7 @@ const OperationTypeView: React.FC<{ type?: OperationType }> = ({ type }) => {
 };
 
 type OperationViewProps = {
-  data: RequestData;
+  data: Data;
 };
 
 export const OperationView: React.FC<OperationViewProps> = ({ data }) => {

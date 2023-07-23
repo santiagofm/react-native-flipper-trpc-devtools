@@ -2,10 +2,10 @@ import React from "react";
 import { Layout, theme, DataInspector, DetailSidebar } from "flipper-plugin";
 import { CloseCircleOutlined } from "@ant-design/icons";
 import { Typography } from "antd";
-import { RequestData } from "./types";
+import { Data } from "./types";
 
 type Props = {
-  data?: RequestData;
+  data?: Data;
   close: VoidFunction;
 };
 

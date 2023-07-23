@@ -56,6 +56,7 @@ export const Example: React.FC = () => {
         <WhiteSpace size="lg" />
         <ProcedureCard
           title="Mutation"
+          value="Minimum length = 5"
           button={{
             title: 'Set Nested Greeting',
             onPress: () => setGreeting({ greeting: input2 }),

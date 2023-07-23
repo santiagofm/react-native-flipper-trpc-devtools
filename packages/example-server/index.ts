@@ -23,7 +23,7 @@ const nested = router({
   setGreeting: publicProcedure
     .input(
       z.object({
-        greeting: z.string(),
+        greeting: z.string().min(5),
       })
     )
     .mutation(({ input }) => {
@@ -41,7 +41,12 @@ const appRouter = router({
         })
         .nullish()
     )
-    .query(({ input }) => {
+    .query(async ({ input }) => {
+      const randomInt = Math.random() * 2;
+      const waitTime = randomInt * 1000;
+
+      await new Promise((resolve) => setTimeout(resolve, waitTime));
+
       return {
         text: `hello ${input?.name ?? "world"}`,
       };
