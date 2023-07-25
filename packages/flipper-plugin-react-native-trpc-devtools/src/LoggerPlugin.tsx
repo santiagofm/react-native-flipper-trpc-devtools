@@ -15,6 +15,7 @@ import {
   PluginEvents,
   Data,
   StatusConfig,
+  Operation,
 } from "./types";
 import { OperationView } from "./OperationView";
 import { Typography } from "antd";
@@ -101,21 +102,42 @@ export const LoggerPlugin = (client: PluginClient<Events, {}>) => {
   const selectedID = createState<string | null>(null);
 
   client.onMessage(PluginEvents.TRPC_REQUEST, (item) => {
-    // TODO: Should check if existing value already and update it instead
     data.append(item);
   });
 
   client.onMessage(PluginEvents.TRPC_RESPONSE, (item) => {
-    const existingDataItem = data.getById(item.id);
+    let existingDataItem = data.getById(item.id);
     if (!existingDataItem) {
-      console.error("Could not find existing data item for id", item.id);
+      // This could happen if the user clears the data
+      data.append(item);
+      existingDataItem = item;
+    }
+
+    if (existingDataItem.type !== Operation.SUBSCRIPTION) {
+      data.upsert({
+        ...existingDataItem,
+        ...item,
+      });
       return;
     }
 
-    data.upsert({
+    // If it's a subscription, we want to update only the first item and add new ones for the rest
+    const newData = {
       ...existingDataItem,
       ...item,
-    });
+    };
+
+    if (!existingDataItem.isSubscriptionRunning) {
+      data.upsert({
+        ...newData,
+        isSubscriptionRunning: true,
+      });
+    } else {
+      data.upsert({
+        ...newData,
+        id: `${newData.id}-${newData.timestamp}`,
+      });
+    }
   });
 
   client.onConnect(() => {

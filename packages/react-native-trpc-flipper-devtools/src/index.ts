@@ -44,52 +44,39 @@ export const flipperDevToolsLink = <TRouter extends AnyRouter = AnyRouter>(
   return () => {
     return ({ op, next }) => {
       return observable((observer) => {
-        const requestStartTime = Date.now();
-
-        if (enabled) {
-          _connection?.send("TRPC_REQUEST", {
-            id: op.id,
-            timestamp: requestStartTime,
-            type: op.type,
-            input: op.input,
-            path: op.path,
-            context: op.context,
-          });
-          console.log("TRPC Request:", {
-            id: op.id,
-            timestamp: requestStartTime,
-            type: op.type,
-            input: op.input,
-            path: op.path,
-            context: op.context,
-          });
+        if (!enabled) {
+          return next(op).subscribe(observer);
         }
 
-        const sendDataToPlugin = (result: RequestResult<TRouter>) => {
-          const duration = Date.now() - requestStartTime;
-
-          if (enabled) {
-            const isError = result instanceof Error || "error" in result.result;
-            const status = isError ? "error" : "success";
-
-            // TODO: Determine status
-            _connection?.send("TRPC_RESPONSE", {
-              id: op.id,
-              duration,
-              status,
-              result,
-            });
-            console.log("TRPC Response:", {
-              id: op.id,
-              duration,
-              status,
-              result,
-            });
-          }
+        const requestStartTime = Date.now();
+        const id = `${op.type}:${op.id}`;
+        const requestData = {
+          id,
+          opId: op.id,
+          timestamp: requestStartTime,
+          type: op.type,
+          input: op.input,
+          path: op.path,
+          context: op.context,
         };
 
-        // TODO: Can maybe send two events per request? One for the request and one for the response?
-        // https://github.com/rhenriquez28/trpc-client-devtools/blob/95bf29b4c383b92a2b9f2c96562a52e2135fa4ee/packages/devtools-link/src/index.ts#L41-L46
+        _connection?.send("TRPC_REQUEST", requestData);
+
+        const sendDataToPlugin = (result: RequestResult<TRouter>) => {
+          const timestamp = Date.now();
+          const duration = timestamp - requestStartTime;
+          const isError = result instanceof Error || "error" in result.result;
+          const status = isError ? "error" : "success";
+
+          _connection?.send("TRPC_RESPONSE", {
+            ...requestData,
+            startTime: requestStartTime,
+            timestamp,
+            duration,
+            status,
+            result,
+          });
+        };
 
         return next(op)
           .pipe(
