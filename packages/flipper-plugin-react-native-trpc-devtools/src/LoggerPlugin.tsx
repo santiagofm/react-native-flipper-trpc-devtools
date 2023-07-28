@@ -5,7 +5,6 @@ import {
   createDataSource,
   DataFormatter,
   DataTableColumn,
-  HighlightManager,
   DataTableManager,
   theme,
 } from "flipper-plugin";
@@ -19,22 +18,7 @@ import {
 } from "./types";
 import { OperationView } from "./OperationView";
 import { Typography } from "antd";
-
-const TimestampFormatter = (value?: number, highlighter?: HighlightManager) => {
-  if (!value) return "-";
-
-  const formattedValue = new Date(value).toLocaleTimeString(undefined, {
-    hour12: false,
-  });
-  return highlighter?.render(formattedValue) ?? value;
-};
-
-const DurationFormatter = (value?: number, highlighter?: HighlightManager) => {
-  if (!value) return "";
-
-  const formattedValue = `${value}ms`;
-  return highlighter?.render(formattedValue) ?? value;
-};
+import { DurationFormatter, TimestampFormatter } from "./util";
 
 const columns: DataTableColumn<Data>[] = [
   {
