@@ -11,7 +11,7 @@ import { Typography } from "antd";
 import { Data } from "./types";
 import { toUpperCaseFirstChar } from "./util";
 
-const dataItemKeys: Array<keyof Data> = ["input", "duration", "result"];
+const dataItemKeys: Array<keyof Data> = ["input", "result"];
 
 type Props = {
   item: Data;
@@ -40,6 +40,7 @@ export const LoggerDetailView: React.FC<Props> = ({ close, item }) => {
             style={{ backgroundColor: theme.backgroundWash }}
           >
             {dataItemKeys.map((key) => (
+              // @ts-ignore FIXME: Panel is not typed OK and is missing children
               <Panel
                 key={key}
                 collapsible={true}
