@@ -11,7 +11,7 @@ export const Operation = {
   QUERY: "query",
   MUTATION: "mutation",
   SUBSCRIPTION: "subscription",
-};
+} as const;
 
 export type OperationType = (typeof Operation)[keyof typeof Operation];
 
@@ -33,12 +33,13 @@ export const OperationConfig = {
 const Status = {
   SUCCESS: "success",
   ERROR: "error",
-};
+} as const;
 
 export type StatusType = (typeof Status)[keyof typeof Status];
 
 type RequestData = {
   id: string;
+  opId: string;
   timestamp: number;
   type: OperationType;
   input: unknown;
@@ -48,9 +49,23 @@ type RequestData = {
 
 type ResponseData = {
   id: string;
+  opId: string;
+  startTime: number;
+  timestamp: number;
   duration: number;
   result: unknown;
   status: StatusType;
+};
+
+type LocalData = {
+  isSubscriptionRunning?: boolean;
+};
+
+export type Data = RequestData & Partial<ResponseData> & LocalData;
+
+export type Events = {
+  [PluginEvents.TRPC_REQUEST]: Data;
+  [PluginEvents.TRPC_RESPONSE]: Data;
 };
 
 export const StatusConfig = {
@@ -62,11 +77,4 @@ export const StatusConfig = {
     label: "ERROR",
     color: theme.errorColor,
   },
-};
-
-export type Data = RequestData & Partial<ResponseData>;
-
-export type Events = {
-  [PluginEvents.TRPC_REQUEST]: Data;
-  [PluginEvents.TRPC_RESPONSE]: Data;
 };

@@ -16,6 +16,10 @@ export const LoggerView: React.FC = () => {
   const isConnected = useValue(instance.isConnected);
   const selectedId = useValue(instance.selectedID);
 
+  const selectedDataItem = selectedId
+    ? instance.data.getById(selectedId)
+    : null;
+
   React.useEffect(() => {
     hotkeys("ctrl+c", () => instance.data.clear());
     return () => {
@@ -29,33 +33,28 @@ export const LoggerView: React.FC = () => {
 
   return (
     <Layout.Container grow>
-      <Layout.Bottom>
-        <Layout.ScrollContainer
-          vertical
-          style={{ backgroundColor: theme.backgroundWash }}
-        >
-          <DataTable<Data>
-            tableManagerRef={instance.tableManagerRef}
-            dataSource={instance.data}
-            columns={instance.columns}
-            enableAutoScroll={true}
-            enableMultiPanels={true}
-            enableHorizontalScroll={false}
-            onSelect={instance.setSelection}
-            onRowStyle={getRowStyle}
-            extraActions={
-              <Button title="Clear log" onClick={instance.clearData}>
-                <DeleteOutlined />
-              </Button>
-            }
-          />
-        </Layout.ScrollContainer>
+      <Layout.Bottom style={{ backgroundColor: theme.backgroundWash }}>
+        <DataTable<Data>
+          tableManagerRef={instance.tableManagerRef}
+          dataSource={instance.data}
+          columns={instance.columns}
+          enableAutoScroll={true}
+          enableMultiPanels={true}
+          enableHorizontalScroll={false}
+          onSelect={instance.setSelection}
+          onRowStyle={getRowStyle}
+          extraActions={
+            <Button title="Clear" onClick={instance.clearData}>
+              <DeleteOutlined />
+            </Button>
+          }
+        />
         <ColorReference />
       </Layout.Bottom>
-      {selectedId && (
+      {selectedDataItem && (
         <LoggerDetailView
           close={instance.clearSelection}
-          data={instance.data.getById(selectedId)}
+          item={selectedDataItem}
         />
       )}
     </Layout.Container>

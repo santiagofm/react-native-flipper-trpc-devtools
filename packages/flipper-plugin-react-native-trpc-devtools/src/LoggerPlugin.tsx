@@ -5,7 +5,6 @@ import {
   createDataSource,
   DataFormatter,
   DataTableColumn,
-  HighlightManager,
   DataTableManager,
   theme,
 } from "flipper-plugin";
@@ -15,25 +14,11 @@ import {
   PluginEvents,
   Data,
   StatusConfig,
+  Operation,
 } from "./types";
 import { OperationView } from "./OperationView";
 import { Typography } from "antd";
-
-const TimestampFormatter = (value?: number, highlighter?: HighlightManager) => {
-  if (!value) return "-";
-
-  const formattedValue = new Date(value).toLocaleTimeString(undefined, {
-    hour12: false,
-  });
-  return highlighter?.render(formattedValue) ?? value;
-};
-
-const DurationFormatter = (value?: number, highlighter?: HighlightManager) => {
-  if (!value) return "";
-
-  const formattedValue = `${value}ms`;
-  return highlighter?.render(formattedValue) ?? value;
-};
+import { DurationFormatter, TimestampFormatter } from "./util";
 
 const columns: DataTableColumn<Data>[] = [
   {
@@ -101,21 +86,42 @@ export const LoggerPlugin = (client: PluginClient<Events, {}>) => {
   const selectedID = createState<string | null>(null);
 
   client.onMessage(PluginEvents.TRPC_REQUEST, (item) => {
-    // TODO: Should check if existing value already and update it instead
     data.append(item);
   });
 
   client.onMessage(PluginEvents.TRPC_RESPONSE, (item) => {
-    const existingDataItem = data.getById(item.id);
+    let existingDataItem = data.getById(item.id);
     if (!existingDataItem) {
-      console.error("Could not find existing data item for id", item.id);
+      // This could happen if the user clears the data
+      data.append(item);
+      existingDataItem = item;
+    }
+
+    if (existingDataItem.type !== Operation.SUBSCRIPTION) {
+      data.upsert({
+        ...existingDataItem,
+        ...item,
+      });
       return;
     }
 
-    data.upsert({
+    // If it's a subscription, we want to update only the first item and add new ones for the rest
+    const newData = {
       ...existingDataItem,
       ...item,
-    });
+    };
+
+    if (!existingDataItem.isSubscriptionRunning) {
+      data.upsert({
+        ...newData,
+        isSubscriptionRunning: true,
+      });
+    } else {
+      data.upsert({
+        ...newData,
+        id: `${newData.id}-${newData.timestamp}`,
+      });
+    }
   });
 
   client.onConnect(() => {

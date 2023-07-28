@@ -15,11 +15,14 @@ export const ColorReference: React.FC = () => (
         padv={theme.space.tiny}
         padh={theme.inlinePaddingV}
         rounded={true}
+        center
         onClick={() => console.log(value)}
         style={{ backgroundColor: theme.buttonDefaultBackground }}
       >
         <Badge color={config.color} />
-        <Typography.Text style={{ fontWeight: theme.bold }}>
+        <Typography.Text
+          style={{ fontWeight: theme.bold, fontSize: theme.fontSize.small }}
+        >
           {config.label}
         </Typography.Text>
       </Layout.Horizontal>
