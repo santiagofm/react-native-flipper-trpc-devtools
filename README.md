@@ -4,7 +4,7 @@ A [Flipper](https://github.com/facebook/flipper) plugin to visualize [tRPC](http
 
 <img width="1314" alt="Screenshot 2023-07-28 at 20 08 21" src="https://github.com/santiagofm/react-native-flipper-trpc-devtools/assets/6749415/fcef97d2-9532-4e4f-8d4a-d98bf81d3dc5">
 
-> _Devtools in action with the[example client app](https://github.com/santiagofm/react-native-flipper-trpc-devtools/tree/main/packages/example-client)_
+> _Devtools in action with the [example client app](https://github.com/santiagofm/react-native-flipper-trpc-devtools/tree/main/packages/example-client)_
 
 ## Setup devtools
 
@@ -17,19 +17,19 @@ yarn add -d react-native-apollo-devtools-client react-native-flipper
 2. Initialize the plugin as a tRPC client middleware:
 
 ```typescript
-export const trpc = createTRPCReact<AppRouter>();
+import { createTRPCReact } from "@trpc/react-query";
+import { httpBatchLink } from "@trpc/client";
+import { flipperDevToolsLink } from 'react-native-trpc-flipper-devtools';
 
-const wsClient = createWSClient({
-  url: SERVER_URL,
-});
+export const trpc = createTRPCReact<AppRouter>();
 
 export const trpcClient = trpc.createClient({
   links: [
     flipperDevToolsLink({
       enabled: __DEV__,
     }),
-    wsLink({
-      client: wsClient,
+    httpBatchLink({
+      url: "http://localhost:3000",
     }),
   ],
 });
