@@ -14,5 +14,5 @@
   ],
   "author": "santiagofm <santiagofermendy@gmail.com>",
   "license": "MIT",
-  "private": true
+  "private": false
 }

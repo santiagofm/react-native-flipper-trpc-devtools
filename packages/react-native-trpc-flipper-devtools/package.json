@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A react-native tRPC devtools client",
   "license": "MIT",
-  "private": true,
+  "private": false,
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
@@ -46,7 +46,7 @@
       [
         "typescript",
         {
-          "project": "tsconfig.json"
+          "project": "tsconfig.build.json"
         }
       ]
     ]

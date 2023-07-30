@@ -1,12 +1,27 @@
 {
   "compilerOptions": {
-    "target": "ES2017",
-    "module": "ES6",
-    "jsx": "react",
-    "sourceMap": true,
-    "strict": true,
-    "moduleResolution": "node",
+    "baseUrl": "./",
+    "paths": {
+      "react-native-apollo-devtools-client": ["./src/index"]
+    },
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
     "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react",
+    "lib": ["esnext"],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noImplicitUseStrict": false,
+    "noStrictGenericChecks": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "esnext",
+    "sourceMap": true
   }
 }
