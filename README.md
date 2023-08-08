@@ -2,7 +2,7 @@
 
 A [Flipper](https://github.com/facebook/flipper) plugin to visualize [tRPC](https://github.com/trpc/trpc) procedure calls for a React Native app.
 
-<img width="1314" alt="Screenshot 2023-07-28 at 20 08 21" src="https://github.com/santiagofm/react-native-flipper-trpc-devtools/assets/6749415/fcef97d2-9532-4e4f-8d4a-d98bf81d3dc5">
+<img width="1314" src="https://github.com/santiagofm/react-native-flipper-trpc-devtools/assets/6749415/bb51b6ef-b3f2-457f-9924-a91562c1bcc2" />
 
 > _Devtools in action with the [example client app](https://github.com/santiagofm/react-native-flipper-trpc-devtools/tree/main/packages/example-client)_
 
