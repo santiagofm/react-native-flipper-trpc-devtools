@@ -1,18 +1,43 @@
 {
   "name": "react-native-flipper-trpc-devtools",
-  "version": "1.0.0",
-  "description": "react-native tRPC devtools",
+  "version": "1.0.1",
+  "private": true,
+  "description": "react-native flipper tRPC devtools",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/santiagofm/react-native-flipper-trpc-devtools"
+  },
   "workspaces": [
     "packages/*"
   ],
-  "main": "index.js",
   "keywords": [
     "react-native",
     "flipper",
     "trpc",
     "devtools"
   ],
-  "author": "santiagofm <santiagofermendy@gmail.com>",
+  "author": "santiagofm@github",
   "license": "MIT",
-  "private": false
+  "scripts": {
+    "build": "yarn workspace react-native-trpc-flipper-devtools build && yarn workspace flipper-plugin-react-native-trpc-devtools build",
+    "release": "yarn build && yarn workspace react-native-trpc-flipper-devtools release && yarn workspace flipper-plugin-react-native-trpc-devtools release && release-it",
+    "release:test": "yarn build && yarn workspace react-native-trpc-flipper-devtools release:test && yarn workspace flipper-plugin-react-native-trpc-devtools release:test && release-it --dry-run"
+  },
+  "devDependencies": {
+    "@release-it/bumper": "^5.1.0",
+    "release-it": "^16.1.3"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
+  "release-it": {
+    "git": {
+      "commitMessage": "chore: release ${version}",
+      "tagName": "v${version}",
+      "requireCleanWorkingDir": false
+    },
+    "npm": {
+      "publish": false
+    }
+  }
 }
