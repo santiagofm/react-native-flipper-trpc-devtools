@@ -5848,7 +5848,7 @@ flipper-plugin-lib@0.210.1:
     tmp "^0.2.1"
 
 "flipper-plugin-react-native-trpc-devtools@file:/Users/santiago/Developer/react-native-flipper-trpc-devtools/packages/flipper-plugin-react-native-trpc-devtools":
-  version "1.0.2"
+  version "1.0.3"
   resolved "file:packages/flipper-plugin-react-native-trpc-devtools"
 
 flipper-plugin@^0.206.0:
@@ -10523,7 +10523,7 @@ react-native-modal-popover@^2.0.1:
     prop-types "^15.8.1"
 
 react-native-trpc-flipper-devtools@*, "react-native-trpc-flipper-devtools@file:/Users/santiago/Developer/react-native-flipper-trpc-devtools/packages/react-native-trpc-flipper-devtools":
-  version "1.0.2"
+  version "1.0.3"
   resolved "file:packages/react-native-trpc-flipper-devtools"
 
 react-native@*, react-native@>=0.57, react-native@>=0.59, react-native@>=0.62, react-native@>=0.64.1, react-native@>0.50.0, react-native@>0.62.0, react-native@0.72.3:
