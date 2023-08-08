@@ -4,11 +4,16 @@
   "description": "A react-native tRPC devtools client",
   "license": "MIT",
   "private": false,
+  "keywords": [
+    "trpc",
+    "react-native",
+    "devtools"
+  ],
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
   "scripts": {
-    "prepare": "bob build",
+    "build": "bob build",
     "release": "release-it",
     "release:test": "release-it --dry-run"
   },
@@ -22,17 +27,13 @@
   },
   "devDependencies": {
     "react-native-builder-bob": "^0.21.3",
-    "react-native-flipper": "^0.206.0",
-    "release-it": "^16.1.3"
+    "react-native-flipper": "^0.206.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
   },
   "release-it": {
-    "git": {
-      "commitMessage": "chore: release ${version}",
-      "tagName": "v${version}"
-    },
+    "git": false,
     "npm": {
       "publish": true
     }
