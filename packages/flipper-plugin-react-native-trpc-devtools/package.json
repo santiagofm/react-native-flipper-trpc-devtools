@@ -6,6 +6,10 @@
   "pluginType": "client",
   "main": "dist/bundle.js",
   "flipperBundlerEntry": "src/index.tsx",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/santiagofm/react-native-flipper-trpc-devtools"
+  },
   "license": "MIT",
   "keywords": [
     "flipper-plugin",
