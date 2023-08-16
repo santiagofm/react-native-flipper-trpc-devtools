@@ -3367,9 +3367,9 @@ antd@^4.23.4:
     scroll-into-view-if-needed "^2.2.25"
 
 antd@latest:
-  version "5.8.2"
-  resolved "https://registry.npmjs.org/antd/-/antd-5.8.2.tgz"
-  integrity sha512-kkC2BSBde1JzJxk2wNYj/NXgNZQZ2yu6avJoCKleSi32nsjiadi7FFu1AyGxIzoJ9CrxoLacjGvrwbKJQ6kCvw==
+  version "5.8.3"
+  resolved "https://registry.npmjs.org/antd/-/antd-5.8.3.tgz"
+  integrity sha512-/DIGg/1UXyPdNLs9FYalfJO1LnnwMv2pnx9DS6ANSJwlo6fDxtb693IJWdaBuRlxgXJfARzxMNsPyFygy9N/Qw==
   dependencies:
     "@ant-design/colors" "^7.0.0"
     "@ant-design/cssinjs" "^1.16.0"
@@ -3400,7 +3400,7 @@ antd@latest:
     rc-motion "^2.7.3"
     rc-notification "~5.0.4"
     rc-pagination "~3.5.0"
-    rc-picker "~3.12.0"
+    rc-picker "~3.13.0"
     rc-progress "~3.4.1"
     rc-rate "~2.12.0"
     rc-resize-observer "^1.2.0"
@@ -5761,23 +5761,23 @@ flipper-common@0.206.0:
   dependencies:
     uuid "^8.3.2"
 
-flipper-common@0.210.1:
-  version "0.210.1"
-  resolved "https://registry.npmjs.org/flipper-common/-/flipper-common-0.210.1.tgz"
-  integrity sha512-w/kqzLA9gtjUwcr9VKRhv5qpT2KIA0XZsOVeeGaXaSrxilDmtAKif9upClsH44x9PKzlQBvqe9MoJ4T105+QkA==
+flipper-common@0.211.1:
+  version "0.211.1"
+  resolved "https://registry.npmjs.org/flipper-common/-/flipper-common-0.211.1.tgz"
+  integrity sha512-FNnU9K1A5HKVO+LtLB//pSxlYDGPZTXioYFUUd6KXRfwTz5s4tRoU7nSBcQY92pz1EqvUZOdsEUW8QwW7zyHdA==
   dependencies:
     uuid "^8.3.2"
 
-flipper-pkg-lib@0.210.1:
-  version "0.210.1"
-  resolved "https://registry.npmjs.org/flipper-pkg-lib/-/flipper-pkg-lib-0.210.1.tgz"
-  integrity sha512-E9DUrujoYNiz+XVFy4XanMbY9kwTXl7c4mWUOZyUlXfF2VFB48ciB3sIJWT8S0O6B0hekGNDkcYXwNnEZ/wZfA==
+flipper-pkg-lib@0.211.1:
+  version "0.211.1"
+  resolved "https://registry.npmjs.org/flipper-pkg-lib/-/flipper-pkg-lib-0.211.1.tgz"
+  integrity sha512-Me9m687yjAOuJfGXr//O05W3fnQKmMDv1/V/fHujIYcUvLZo5XNoSLA1Z13mvt4SuJ795hc/rR1+RmvoAcC7Fw==
   dependencies:
     chalk "^4"
     esbuild "^0.15.7"
     fb-watchman "^2.0.1"
-    flipper-common "0.210.1"
-    flipper-plugin-lib "0.210.1"
+    flipper-common "0.211.1"
+    flipper-plugin-lib "0.211.1"
     fs-extra "^11.1.0"
     metro "^0.70.2"
     metro-cache "^0.70.2"
@@ -5786,9 +5786,9 @@ flipper-pkg-lib@0.210.1:
     p-map "^4"
 
 flipper-pkg@latest:
-  version "0.210.1"
-  resolved "https://registry.npmjs.org/flipper-pkg/-/flipper-pkg-0.210.1.tgz"
-  integrity sha512-5R757zeJ8WxUseYq7bObJOq/UhWmkeXPIzAiW06mAtcUEpCP40JYlpCHq4D3ZozKwJoYkpj6u2aEXP9Djcfujg==
+  version "0.211.1"
+  resolved "https://registry.npmjs.org/flipper-pkg/-/flipper-pkg-0.211.1.tgz"
+  integrity sha512-KhmWkshMe0tKHDBbTDoUYWiD3hSFUTptNDFXs0S72eG5dX+8zRhf/H+2391E9HQLp5Lsy+gnCQaYxOy6+KDkdw==
   dependencies:
     "@oclif/command" "^1"
     "@oclif/config" "^1"
@@ -5798,8 +5798,8 @@ flipper-pkg@latest:
     ajv "^6.12.2"
     ajv-errors "^1.0.1"
     cli-ux "^6.0.9"
-    flipper-pkg-lib "0.210.1"
-    flipper-plugin-lib "0.210.1"
+    flipper-pkg-lib "0.211.1"
+    flipper-plugin-lib "0.211.1"
     fs-extra "^11.1.0"
     inquirer "^8.2.4"
     lodash "^4.17.21"
@@ -5817,28 +5817,28 @@ flipper-plugin-core@0.206.0:
     lodash "^4.17.21"
     string-natural-compare "^3.0.0"
 
-flipper-plugin-core@0.210.1:
-  version "0.210.1"
-  resolved "https://registry.npmjs.org/flipper-plugin-core/-/flipper-plugin-core-0.210.1.tgz"
-  integrity sha512-bKk3y+ck3FSNF3oFb/CCKS9liRkozfCMoVWBa7OWAKultrXDS/de+KjDuKkrh3T4/T289MBy2FdbtsK9g5WI/w==
+flipper-plugin-core@0.211.1:
+  version "0.211.1"
+  resolved "https://registry.npmjs.org/flipper-plugin-core/-/flipper-plugin-core-0.211.1.tgz"
+  integrity sha512-1o0RBHfADfpAcc+lbAuoRrV63VJ4plXy5+TO13vJSHn21C+RS7d8YLCqpqa8uJnF+jHVZZXE1yBTnjOGa+7eog==
   dependencies:
     eventemitter3 "^4.0.7"
-    flipper-common "0.210.1"
+    flipper-common "0.211.1"
     immer "^9.0.18"
     js-base64 "^3.7.5"
     lodash "^4.17.21"
     string-natural-compare "^3.0.0"
 
-flipper-plugin-lib@0.210.1:
-  version "0.210.1"
-  resolved "https://registry.npmjs.org/flipper-plugin-lib/-/flipper-plugin-lib-0.210.1.tgz"
-  integrity sha512-l4MMMgobtkmheqEftpFIhKtZ2Bf2b7T8i2Yy1xL4mKlki0wthOa541MBgyNmqoyKNoRCuMLn5zLMmJgJsp+OYw==
+flipper-plugin-lib@0.211.1:
+  version "0.211.1"
+  resolved "https://registry.npmjs.org/flipper-plugin-lib/-/flipper-plugin-lib-0.211.1.tgz"
+  integrity sha512-oB3gN+DDua6+HC2wiwvP/ywu8EdAW9U/3R4SBYfldCsdcnQ5Imx6wHLbLy/YpQXIAdrcl46wtxdmgN7ffrE8AQ==
   dependencies:
     algoliasearch "^4.14.3"
     decompress "^4.2.1"
     decompress-targz "^4.1.1"
     decompress-unzip "^4.0.1"
-    flipper-common "0.210.1"
+    flipper-common "0.211.1"
     fs-extra "^11.1.0"
     live-plugin-manager "^0.17.1"
     npm-api "^1.0.1"
@@ -5848,7 +5848,7 @@ flipper-plugin-lib@0.210.1:
     tmp "^0.2.1"
 
 "flipper-plugin-react-native-trpc-devtools@file:/Users/santiago/Developer/react-native-flipper-trpc-devtools/packages/flipper-plugin-react-native-trpc-devtools":
-  version "1.0.4"
+  version "1.0.6"
   resolved "file:packages/flipper-plugin-react-native-trpc-devtools"
 
 flipper-plugin@^0.206.0:
@@ -5873,9 +5873,9 @@ flipper-plugin@^0.206.0:
     string-natural-compare "^3.0.0"
 
 flipper-plugin@latest:
-  version "0.210.1"
-  resolved "https://registry.npmjs.org/flipper-plugin/-/flipper-plugin-0.210.1.tgz"
-  integrity sha512-+sSGo2Uxz+hwDQNM5j5CNdK7lDell1uMyCIcO7Ddhwvvj4pG+yNFHPyOe94pvUvvKKExgARx48cL4PkX8D+Sww==
+  version "0.211.1"
+  resolved "https://registry.npmjs.org/flipper-plugin/-/flipper-plugin-0.211.1.tgz"
+  integrity sha512-S2440cGiWcotwCrALppHiF7oI+CBVrszFJya2U1pNKWkHkrpF3YTU7FwmVPFsuzI9T/5qQzT+8igOLMMsJ8GHw==
   dependencies:
     "@ant-design/colors" "^6.0.0"
     "@emotion/css" "^11.7.1"
@@ -5885,8 +5885,8 @@ flipper-plugin@latest:
     "@types/react-color" "^3.0.6"
     "@types/react-dom" "^17.0.13"
     eventemitter3 "^4.0.7"
-    flipper-common "0.210.1"
-    flipper-plugin-core "0.210.1"
+    flipper-common "0.211.1"
+    flipper-plugin-core "0.211.1"
     immer "^9.0.18"
     js-base64 "^3.7.5"
     lodash "^4.17.21"
@@ -8798,9 +8798,9 @@ minimist@^1.2.0, minimist@^1.2.6:
   integrity sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==
 
 minipass@*:
-  version "7.0.2"
-  resolved "https://registry.npmjs.org/minipass/-/minipass-7.0.2.tgz"
-  integrity sha512-eL79dXrE1q9dBbDCLg7xfn/vl7MS4F1gvJAgjJrQli/jbQWdUttuVawphqpffoIYfRdq78LHx6GP4bU/EQ2ATA==
+  version "7.0.3"
+  resolved "https://registry.npmjs.org/minipass/-/minipass-7.0.3.tgz"
+  integrity sha512-LhbbwCfz3vsb12j/WkWQPZfKTsgqIe1Nf/ti1pKjYESGLHIVjWU96G9/ljLH4F9mWNVhlQOm0VySdAWzf05dpg==
 
 minipass@^3.0.0:
   version "3.3.6"
@@ -10058,10 +10058,10 @@ rc-picker@~2.7.0:
     rc-util "^5.4.0"
     shallowequal "^1.1.0"
 
-rc-picker@~3.12.0:
-  version "3.12.0"
-  resolved "https://registry.npmjs.org/rc-picker/-/rc-picker-3.12.0.tgz"
-  integrity sha512-SsEhK4hbjAh3pvlqujIQaMcx6mLAwc0KN0TS9dJ0rtwGuUnSDa/mKgna/LjZlOT7U//b+dIH5BLSZttpklRG9A==
+rc-picker@~3.13.0:
+  version "3.13.0"
+  resolved "https://registry.npmjs.org/rc-picker/-/rc-picker-3.13.0.tgz"
+  integrity sha512-hJ+1lGkemnvsW+t+PjH9OAehHlj7wdD0G75T1HZj0IeZTqBE/5mmuf8E8MHYATNBqW409lAfk8GwjYm1WVMopg==
   dependencies:
     "@babel/runtime" "^7.10.1"
     "@rc-component/trigger" "^1.5.0"
@@ -10523,7 +10523,7 @@ react-native-modal-popover@^2.0.1:
     prop-types "^15.8.1"
 
 react-native-trpc-flipper-devtools@*, "react-native-trpc-flipper-devtools@file:/Users/santiago/Developer/react-native-flipper-trpc-devtools/packages/react-native-trpc-flipper-devtools":
-  version "1.0.4"
+  version "1.0.6"
   resolved "file:packages/react-native-trpc-flipper-devtools"
 
 react-native@*, react-native@>=0.57, react-native@>=0.59, react-native@>=0.62, react-native@>=0.64.1, react-native@>0.50.0, react-native@>0.62.0, react-native@0.72.3:
