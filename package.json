@@ -1,6 +1,6 @@
 {
   "name": "react-native-flipper-trpc-devtools",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "private": true,
   "description": "react-native flipper tRPC devtools",
   "repository": {
